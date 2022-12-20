@@ -55,14 +55,6 @@ jobs:
           name: python-app
           path: .
           
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
-        with:
-          app-name: 'cchlabsubmodule'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_98CC3FA1C8654CDDA1BC6B85C5F3CFB6 }}
-
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -72,3 +64,12 @@ jobs:
       - name: Git Sumbodule Update
         run: |
           git submodule update --init --recursive
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'cchlabsubmodule'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_98CC3FA1C8654CDDA1BC6B85C5F3CFB6 }}
+
