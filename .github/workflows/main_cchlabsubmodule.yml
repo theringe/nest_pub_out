@@ -12,26 +12,6 @@ on:
 
 jobs:
 
-  sync:
-    name: 'Submodules Sync'
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.CI_TOKEN }}
-          submodules: true
-
-      - name: Git Sumbodule Update
-        run: |
-          git pull --recurse-submodules
-          git submodule update --remote --recursive
-
   build:
     runs-on: ubuntu-latest
 
@@ -82,3 +62,14 @@ jobs:
           app-name: 'cchlabsubmodule'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_98CC3FA1C8654CDDA1BC6B85C5F3CFB6 }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          submodules: true
+
+      - name: Git Sumbodule Update
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
