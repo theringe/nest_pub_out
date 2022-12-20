@@ -1,0 +1,3 @@
+[submodule "nest_pub_in"]
+	path = nest_pub_in
+	url = https://github.com/theringe/nest_pub_in.git
